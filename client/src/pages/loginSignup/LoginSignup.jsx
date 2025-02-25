@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, AlertLink } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from 'axios';
-import "./LoginSignup.css"; // Import external styles
+import "./LoginSignup.css";
 import { useNavigate } from 'react-router-dom';
-
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
@@ -14,49 +13,48 @@ const LoginSignup = () => {
     nic: "",
     gender: "",
   });
-const navigate = useNavigate(); //initialize useNavigate
+
+  const navigate = useNavigate();
+
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const resetForm = () => {
     setFormData({
-        username: "",
-        password: "",
-        email: "",
-        nic: "",
-        gender: "",
-      });
-};
+      username: "",
+      password: "",
+      email: "",
+      nic: "",
+      gender: "",
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`${state} Function Executed`, formData);
-    let endpoint = state === "Signup" ? "signup" : "login";
-    console.log(`POST request to: http://localhost:5000/${endpoint}`);
-    try {
-        const response = await axios.post(`http://localhost:5000/${endpoint}`,formData)
-        console.log("Success", formData);
-        if(response.data.success){
-            localStorage.setItem('auth-token',response.data.token);
-            alert("Signed up successfully!");
-            navigate('/');
-        }else{
-            alert("Error singing up!");
-        }
-    } catch (error) {
-        console.log("Error signing up", error);
-    }
-    resetForm();
-    
-  };
-  
+    const endpoint = state === "Signup" ? "signup" : "login";
 
+    try {
+      const response = await axios.post(`http://localhost:3000/${endpoint}`, formData);
+      
+      if (response.data.success) {
+        if (response.data.token) {
+          localStorage.setItem('auth-token', response.data.token);
+        }
+        alert(`${state} successful!`);
+        navigate('/');
+      } else {
+        alert(response.data.error || `Error during ${state.toLowerCase()}`);
+      }
+    } catch (error) {
+      alert(error.response?.data?.error || `Error during ${state.toLowerCase()}`);
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <Container fluid className="loginsignup-container">
       <Row className="loginsignup-content">
-        {/* Form Section */}
         <Col md={6} className="loginsignup-form">
           <h1 className="text-center">{state}</h1>
           <Form onSubmit={handleSubmit}>
@@ -69,6 +67,7 @@ const navigate = useNavigate(); //initialize useNavigate
                     placeholder="Enter username"
                     value={formData.username}
                     onChange={changeHandler}
+                    required
                   />
                 </Form.Group>
 
@@ -79,6 +78,7 @@ const navigate = useNavigate(); //initialize useNavigate
                     placeholder="Enter your NIC"
                     value={formData.nic}
                     onChange={changeHandler}
+                    required
                   />
                 </Form.Group>
 
@@ -88,8 +88,9 @@ const navigate = useNavigate(); //initialize useNavigate
                     name="gender"
                     value={formData.gender}
                     onChange={changeHandler}
+                    required
                   >
-                    <option>Select</option>
+                    <option value="">Select</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
@@ -106,6 +107,7 @@ const navigate = useNavigate(); //initialize useNavigate
                 placeholder="Enter email"
                 value={formData.email}
                 onChange={changeHandler}
+                required
               />
             </Form.Group>
 
@@ -117,6 +119,7 @@ const navigate = useNavigate(); //initialize useNavigate
                 placeholder="Password"
                 value={formData.password}
                 onChange={changeHandler}
+                required
               />
             </Form.Group>
 
@@ -140,7 +143,6 @@ const navigate = useNavigate(); //initialize useNavigate
           </Form>
         </Col>
 
-        {/* Image Section */}
         <Col md={6} className="loginsignup-image">
           <h2>Start your journey now</h2>
           <p>Join us to explore amazing features and experiences!</p>

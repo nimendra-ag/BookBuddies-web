@@ -1,13 +1,14 @@
-import express from 'express';
-import { GetProfile, SignIn, SignUp } from '../controllers/UserController.js';
+// import express from 'express';
+// import { GetProfile, SignIn, SignUp } from '../controllers/UserController.js';
 
 
-const router = express.Router()
+// const router = express.Router()
 
 
-// router.post("/updateprofile/:id",UpdateProfile)
-router.post('/signup', SignUp);
-router.post('/login', SignIn)
-router.get("/getprofile/:id",GetProfile)
+// // router.post("/updateprofile/:id",UpdateProfile)
 
-export default router;
+// router.post('/signup', SignUp);
+// router.post('/login', SignIn)
+// router.get("/getprofile/:id",GetProfile)
+
+// export default router;

@@ -1,20 +1,30 @@
-import { model } from "mongoose";
+import { Schema, model } from "mongoose";
 
-const UserModel = model('Users',{
-    username:{
-        type:String,
-    },
-    email:{
-        type:String,
-    },
-    nic:{
-        type:String,
-    },
-    gender:{
-        type: String,
-    },
-    password:{
-        type:String,
-    }
-})
-export{UserModel}
+const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  nic: {
+    type: String,
+    required: true
+  },
+  gender: {
+    type: String,
+    required: true,
+    enum: ['Male', 'Female', 'Other']
+  },
+  password: {
+    type: String,
+    required: true
+  }
+}, { timestamps: true });
+
+const UserModel = model('Users', userSchema);
+
+export { UserModel };
