@@ -1,5 +1,7 @@
 provider "aws" {
   region = "eu-north-1"
+  access_key = var.AKIAYQNJS22XRJLXE27A
+  secret_key = var.Ag8NBZzSSMwHNGKTjCMuffQdb+msJI/ARbJtJzK5
 }
 
 resource "aws_instance" "bookbuddies_server" {
