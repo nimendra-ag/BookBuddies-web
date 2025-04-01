@@ -104,7 +104,7 @@ app.post('/login', async (req, res) => {
 //   console.log(`Server is running on port ${PORT}`);
 // });
 
-connect(process.env.MONGO_URI)
+connect(process.env.MONGO_URL)
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(5000,'0.0.0.0', () => console.log(`Server is running on port ${process.env.PORT || 5000}`));
