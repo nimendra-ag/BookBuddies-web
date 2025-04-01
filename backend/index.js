@@ -10,12 +10,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://51.21.202.75:3000'})); // cors() is a middleware that enables cross-origin resource sharing
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log("MongoDB connected successfully"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+// mongoose.connect(process.env.MONGO_URL)
+//   .then(() => console.log("MongoDB connected successfully"))
+//   .catch((err) => console.error("MongoDB connection error:", err));
 
 app.post('/signup', async (req, res) => {
   const { email, password, username, nic, gender } = req.body;
@@ -100,6 +100,15 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log('Connected to MongoDB');
+        app.listen(5000,'0.0.0.0', () => console.log(`Server is running on port ${process.env.PORT || 5000}`));
+    })
+    .catch(err => {
+        console.error('Failed to connect to MongoDB', err);
+    });
