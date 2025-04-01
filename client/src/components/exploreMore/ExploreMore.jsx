@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap';
 
-const ExploreMoreInHomePage = () => {
+const ExploreMore = () => {
   return (
     <section className="py-5 bg-light">
       <Container>
@@ -36,4 +36,4 @@ const ExploreMoreInHomePage = () => {
   );
 };
 
-export default ExploreMoreInHomePage;
+export default ExploreMore;
