@@ -3,9 +3,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "bookbuddies_server" {
-  ami           = "ami-09a9858973b288bdd" # Ensure this AMI exists in your region
+  ami           = "ami-0323c940050bcdb62" # Ensure this AMI exists in your region
   instance_type = "t3.micro"
-  key_name      = "BookBuddiesKey"
+  key_name      = "elevateDaily-key"
 
   vpc_security_group_ids = [aws_security_group.bookbuddies_sg.id]
 
