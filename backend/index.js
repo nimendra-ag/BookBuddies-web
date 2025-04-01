@@ -4,7 +4,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { UserModel } from './models/User.js';
-const {connect} = require('mongoose'); // connect is a function that connects to the MongoDB database
+// const {connect} = require('mongoose'); // connect is a function that connects to the MongoDB database
 
 dotenv.config();
 
@@ -105,7 +105,7 @@ app.post('/login', async (req, res) => {
 //   console.log(`Server is running on port ${PORT}`);
 // });
 
-connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(5000,'0.0.0.0', () => console.log(`Server is running on port ${process.env.PORT || 5000}`));
