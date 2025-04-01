@@ -56,7 +56,7 @@ const LoginSignup = ({ setIsAuthenticated }) => {
     const endpoint = state === "Signup" ? "signup" : "login";
     
     try {
-      const response = await axios.post(`http://localhost:5000/${endpoint}`, formData);
+      const response = await axios.post(`http://51.21.202.75:5000/${endpoint}`, formData);
       
       if (response.data.success) {
         if (response.data.token) {
