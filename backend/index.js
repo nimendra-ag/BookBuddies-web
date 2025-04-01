@@ -4,6 +4,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { UserModel } from './models/User.js';
+const {connect} = require('mongoose'); // connect is a function that connects to the MongoDB database
 
 dotenv.config();
 
