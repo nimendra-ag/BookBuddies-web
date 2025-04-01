@@ -2,16 +2,19 @@ provider "aws" {
   region = "eu-north-1"
 }
 
-resource "aws_instance" "bookbuddies_server" {
-  ami           = "ami-09a9858973b288bdd" # Ensure this AMI exists in your region
+
+resource "aws_instance" "real_chat" {
+  ami           = "ami-09a9858973b288bdd" 
   instance_type = "t3.micro"
   key_name      = "BookBuddiesKey"
+  associate_public_ip_address = true
 
   vpc_security_group_ids = [aws_security_group.bookbuddies_sg.id]
 
   tags = {
     Name = "BookBuddies-Server"
   }
+
 
   user_data = <<-EOF
               #!/bin/bash
@@ -71,4 +74,5 @@ resource "aws_security_group" "bookbuddies_sg" {
 
 output "instance_public_ip" {
   value = aws_instance.bookbuddies_server.public_ip
+  description = "Public IP of the EC2 instance"
 }
