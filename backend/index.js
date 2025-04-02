@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({credentials: true, origin: 'http://51.21.202.75:3000'})); // cors() is a middleware that enables cross-origin resource sharing
+app.use(cors({credentials: true, origin: 'http://13.60.215.247:3000'})); // cors() is a middleware that enables cross-origin resource sharing
 app.use(express.json());
 
 // mongoose.connect(process.env.MONGO_URL)
