@@ -12,7 +12,7 @@ const Hero = () => {
         <Container>
           <Row className="align-items-center">
             <Col lg={5} className="text-center text-lg-start">
-              <h1 className="display-4 fw-bold">Hey there! 👋 Welcome to BookBuddies Web</h1>
+              <h1 className="display-4 fw-bold">Hey there! 👋 Welcome to BookBuddies</h1>
               <p className="lead text-muted mt-3">Explore a world of books waiting to be shared. Join a community of avid readers and discover your next favorite read.</p>
               <Button variant="success" className="mt-4">Read Exclusive Blog</Button>
             </Col>
